@@ -1,11 +1,14 @@
 {
-  "name": "brain-games",
+  "name": "brain-games_helmq",
   "version": "1.0.0",
   "description": "Brain games project",
   "main": "index.js",
   "bin": {
     "brain-games": "dist/bin/brain-games.js"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "babel-node": "babel-node",
