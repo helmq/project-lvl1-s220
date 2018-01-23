@@ -1,5 +1,7 @@
 #!/usr/bin/env node
-import greet from '..';
+import { askName, greet } from '..';
+import upFirstLetter from '../string';
 
 console.log('Welcome to the Brain Games!\n');
-console.log(greet());
+const name = askName();
+console.log(greet(upFirstLetter(name)));
