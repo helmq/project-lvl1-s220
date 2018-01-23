@@ -2,7 +2,7 @@ import readlineSync from 'readline-sync';
 import { checkEven, getRandom } from './math';
 import upFirstLetter from './string';
 
-const welcome = () => 'Welcome to the Brain Games!\nAnswer "yes" if number even otherwise answer "no".\n';
+const welcome = () => '\nWelcome to the Brain Games!\nAnswer "yes" if number even otherwise answer "no".\n';
 
 const askName = () => readlineSync.question('May I have your name ? ');
 
@@ -13,7 +13,7 @@ const question = number => `Question: ${number}`;
 const answer = () => readlineSync.question('Your answer: ');
 
 const failure = (name, answ, corr) =>
-  `'${answ}' is wrong answer ;(. Correct answer was '${corr}'.\nLet's try again, ${name}`;
+  `'${answ}' is wrong answer ;(. Correct answer was '${corr}'.\nLet's try again, ${name}\n`;
 
 const getAnswer = (isEven) => {
   const toCompare = { true: 'yes', false: 'no' };
@@ -39,7 +39,7 @@ const start = () => {
     console.log('Correct!');
     count += 1;
   }
-  console.log(`Congratulations, ${name}!`);
+  console.log(`Congratulations, ${name}!\n`);
 };
 
 export default start;
