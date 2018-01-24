@@ -1,6 +1,5 @@
-import { welcome, readName, greet, question, readAnswer, failure, getAnswer, congratulations } from './abstract';
+import { gameIter, getResult } from './abstract';
 import { sum, deduct, multiply, generateRandom } from '../math';
-import upFirstLetter from '../string';
 
 const generateArgs = (expression) => {
   const args = {
@@ -11,32 +10,28 @@ const generateArgs = (expression) => {
   return args[expression.name];
 };
 
-const generateQuestion = (expression, args) => {
+const generateQuestionString = (expression, args) => {
   const [first, second] = args;
   const operations = { sum: '+', deduct: '-', multiply: '*' };
   return `${first} ${operations[expression.name]} ${second}`;
 };
 
-const start = (numberOfQuestions) => {
-  console.log(welcome('What is the result of the expression?'));
-  const name = upFirstLetter(readName());
-  console.log(greet(name));
+const generateQuestion = () => {
   const expressions = [sum, deduct, multiply];
-  let count = 0;
-  while (count < numberOfQuestions) {
-    const expression = expressions[generateRandom(0, expressions.length - 1)];
-    const args = generateArgs(expression);
-    console.log(question(generateQuestion(expression, args)));
-    const answer = readAnswer();
-    const parsedAnswer = parseInt(answer, 10);
-    if (Number.isNaN(parsedAnswer) || getAnswer(expression, ...args) !== parsedAnswer) {
-      console.log(failure(name, answer, expression(...args)));
-      return;
-    }
-    console.log('Correct!');
-    count += 1;
-  }
-  console.log(congratulations(name));
+  const expression = expressions[generateRandom(0, expressions.length - 1)];
+  const args = generateArgs(expression);
+  return {
+    string: generateQuestionString(expression, args),
+    result: getResult(expression, ...args),
+  };
 };
+
+const parseAnswer = (answer, result) => {
+  const parsedAnswer = parseInt(answer, 10);
+  return !Number.isNaN(parsedAnswer) && result === parsedAnswer;
+};
+
+const start = (askQuestion, getAnswer) =>
+  gameIter(generateQuestion, askQuestion, getAnswer, parseAnswer);
 
 export default start;
