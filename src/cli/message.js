@@ -1,7 +1,7 @@
 import readlineSync from 'readline-sync';
 
 export const welcome = description =>
-  `\nWelcome to the Brain Games!\n${description}\n`;
+  `\nWelcome to the Brain Games!\n${description}`;
 
 export const readName = () => readlineSync.question('May I have your name ? ');
 

@@ -1,4 +1,7 @@
 #!/usr/bin/env node
-import { startBrainGames as start } from '..';
+import * as message from '../cli/message';
+import upFirstLetter from '../string';
 
-start();
+console.log(message.welcome(''));
+const name = upFirstLetter(message.readName());
+console.log(message.greet(name));
