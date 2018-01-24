@@ -1,12 +1,13 @@
 {
   "name": "brain-games_helmq",
-  "version": "1.3.3",
+  "version": "1.4.0",
   "description": "Brain games project",
   "main": "index.js",
   "bin": {
     "brain-games": "dist/bin/brain-games-cli.js",
     "brain-even": "dist/bin/brain-even-cli.js",
-    "brain-calc": "dist/bin/brain-calc-cli.js"
+    "brain-calc": "dist/bin/brain-calc-cli.js",
+    "brain-gcd": "dist/bin/brain-gcd-cli.js"
   },
   "files": [
     "dist"
