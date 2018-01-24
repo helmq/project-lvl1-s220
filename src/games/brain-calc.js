@@ -1,11 +1,11 @@
-import { gameIter, getResult } from './abstract';
-import { sum, deduct, multiply, generateRandom } from '../math';
+import { gameIter, getResult } from './engine';
+import * as helper from '../helper';
 
 const generateArgs = (expression) => {
   const args = {
-    sum: [generateRandom(1, 100), generateRandom(1, 100)],
-    deduct: [generateRandom(1, 100), generateRandom(1, 100)],
-    multiply: [generateRandom(1, 100), generateRandom(1, 10)],
+    sum: [helper.generateRandom(1, 100), helper.generateRandom(1, 100)],
+    deduct: [helper.generateRandom(1, 100), helper.generateRandom(1, 100)],
+    multiply: [helper.generateRandom(1, 100), helper.generateRandom(1, 10)],
   };
   return args[expression.name];
 };
@@ -17,8 +17,8 @@ const generateQuestionString = (expression, args) => {
 };
 
 const generateQuestion = () => {
-  const expressions = [sum, deduct, multiply];
-  const expression = expressions[generateRandom(0, expressions.length - 1)];
+  const expressions = [helper.sum, helper.deduct, helper.multiply];
+  const expression = expressions[helper.generateRandom(0, expressions.length - 1)];
   const args = generateArgs(expression);
   return {
     string: generateQuestionString(expression, args),
@@ -34,4 +34,19 @@ const parseAnswer = (answer, result) => {
 const start = (askQuestion, getAnswer) =>
   gameIter(generateQuestion, askQuestion, getAnswer, parseAnswer);
 
-export default start;
+const cliStart = () => {
+  console.log(helper.welcomeMessage('What is the result of the expression?\n'));
+  const name = helper.upFirstLetter(helper.readName());
+  console.log(helper.greetMessage(name));
+  const askQuestion = (question) => {
+    console.log(helper.questionMessage(question));
+  };
+  const result = start(askQuestion, helper.readAnswer);
+  if (result === true) {
+    console.log(helper.congratulationsMessage(name));
+  } else {
+    console.log(helper.failureMessage(name, result.answer, result.result));
+  }
+};
+
+export default cliStart;
