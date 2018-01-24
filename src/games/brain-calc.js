@@ -37,17 +37,16 @@ const parseAnswer = (answer, result) => {
   return !Number.isNaN(parsedAnswer) && result === parsedAnswer;
 };
 
-const start = (askQuestion, getAnswer) =>
-  gameIter(generateQuestion, askQuestion, getAnswer, parseAnswer);
+const start = (askQuestion, getAnswer, onTrueAnswer) =>
+  gameIter(generateQuestion, parseAnswer, askQuestion, getAnswer, onTrueAnswer);
 
 const cliStart = () => {
+  const askQuestion = question => console.log(helper.questionMessage(question));
+  const onTrueAnswer = () => console.log('Correct!');
   console.log(helper.welcomeMessage('What is the result of the expression?\n'));
   const name = helper.upFirstLetter(helper.readName());
   console.log(helper.greetMessage(name));
-  const askQuestion = (question) => {
-    console.log(helper.questionMessage(question));
-  };
-  const result = start(askQuestion, helper.readAnswer);
+  const result = start(askQuestion, helper.readAnswer, onTrueAnswer);
   if (result === true) {
     console.log(helper.congratulationsMessage(name));
   } else {
