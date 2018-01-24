@@ -35,6 +35,6 @@ const cliStart = () => {
   } else {
     console.log(helper.failureMessage(name, result.answer, result.result));
   }
-
 };
+
 export default cliStart;
