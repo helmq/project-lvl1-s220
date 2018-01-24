@@ -1,6 +1,12 @@
 import { gameIter, getResult } from './engine';
 import * as helper from '../helper';
 
+const sum = (a, b) => a + b;
+
+const deduct = (a, b) => a - b;
+
+const multiply = (a, b) => a * b;
+
 const generateArgs = (expression) => {
   const args = {
     sum: [helper.generateRandom(1, 100), helper.generateRandom(1, 100)],
@@ -17,7 +23,7 @@ const generateQuestionString = (expression, args) => {
 };
 
 const generateQuestion = () => {
-  const expressions = [helper.sum, helper.deduct, helper.multiply];
+  const expressions = [sum, deduct, multiply];
   const expression = expressions[helper.generateRandom(0, expressions.length - 1)];
   const args = generateArgs(expression);
   return {
