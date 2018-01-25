@@ -1,39 +1,24 @@
-import { getResult, gameIter } from './engine';
+import { cliOutput, generateQuestion } from './engine';
 import * as helper from '../helper';
 
-const parseResult = (result) => {
-  const parse = { false: 'no', true: 'yes' };
-  return parse[result];
-};
+const generateString = arg => arg.toString();
 
-const generateQuestion = () => {
-  const number = helper.generateRandom(1, 100);
-  return {
-    string: number.toString(),
-    result: parseResult(getResult(helper.isEven, number)),
+const generateArgs = () => helper.generateRandom(1, 100);
+
+const parser = (arg) => {
+  const vars = {
+    false: 'no',
+    no: 'no',
+    true: 'yes',
+    yes: 'yes',
   };
+  return vars[arg];
 };
 
-const parseAnswer = (answer, result) => {
-  const correct = new Set(['yes', 'no']);
-  return correct.has(answer) && answer === result;
+const isEven = arg => parser(helper.isEven(arg));
+
+const start = () => {
+  const generator = generateQuestion({ isEven }, generateString, generateArgs);
+  return cliOutput(generator, parser, 'Answer "yes" if number even otherwise answer "no".\n');
 };
-
-const start = (askQuestion, getAnswer, onTrueAnswer) =>
-  gameIter(generateQuestion, parseAnswer, askQuestion, getAnswer, onTrueAnswer);
-
-const cliStart = () => {
-  const askQuestion = question => console.log(helper.questionMessage(question));
-  const onTrueAnswer = () => console.log('Correct!');
-  console.log(helper.welcomeMessage('Answer "yes" if number even otherwise answer "no".\n'));
-  const name = helper.upFirstLetter(helper.readName());
-  console.log(helper.greetMessage(name));
-  const result = start(askQuestion, helper.readAnswer, onTrueAnswer);
-  if (result === true) {
-    console.log(helper.congratulationsMessage(name));
-  } else {
-    console.log(helper.failureMessage(name, result.answer, result.result));
-  }
-};
-
-export default cliStart;
+export default start;
