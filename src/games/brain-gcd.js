@@ -17,7 +17,7 @@ const parser = arg => parseInt(arg, 10);
 
 const start = () => {
   const generator = generateQuestion({ gcd }, generateQuestionString, generateArgs);
-  return cliOutput(generator, parser, 'Find the greatest common divisor of given numbers.\n');
+  return cliOutput(generator, parser, 'Find the greatest common divisor of given numbers.');
 };
 
 export default start;

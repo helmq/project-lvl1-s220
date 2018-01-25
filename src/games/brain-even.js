@@ -19,6 +19,6 @@ const isEven = arg => parser(helper.isEven(arg));
 
 const start = () => {
   const generator = generateQuestion({ isEven }, generateString, generateArgs);
-  return cliOutput(generator, parser, 'Answer "yes" if number even otherwise answer "no".\n');
+  return cliOutput(generator, parser, 'Answer "yes" if number even otherwise answer "no".');
 };
 export default start;

@@ -26,7 +26,7 @@ const parser = n => parseInt(n, 10);
 
 const start = () => {
   const generator = generateQuestion(expressions, generateQuestionString, generateArgs);
-  return cliOutput(generator, parser, 'What is the result of the expression?\n');
+  return cliOutput(generator, parser, 'What is the result of the expression?');
 };
 
 export default start;
