@@ -18,7 +18,9 @@ export const congratulationsMessage = name => `Congratulations, ${name}!\n`;
 
 export const isEven = num => num % 2 === 0;
 
-export const generateRandom = (min, max) =>
-  Math.round((min - 0.5) + (Math.random() * ((max - min) + 1)));
+export const generateRandom = (min, max) => {
+  if (min === max) return min;
+  return Math.round((min - 0.5) + (Math.random() * ((max - min) + 1)));
+};
 
 export const upFirstLetter = str => str[0].toUpperCase() + str.slice(1);
