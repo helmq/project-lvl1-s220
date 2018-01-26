@@ -1,4 +1,4 @@
-import startEngine from './engine';
+import startEngine from '..';
 import * as helper from '../helper';
 
 const description = 'Find the greatest common divisor of given numbers.';
