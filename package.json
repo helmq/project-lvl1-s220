@@ -1,6 +1,6 @@
 {
   "name": "brain-games_helmq",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Brain games project",
   "main": "index.js",
   "bin": {
