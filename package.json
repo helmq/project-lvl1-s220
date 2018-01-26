@@ -8,7 +8,8 @@
     "brain-even": "dist/bin/brain-even-cli.js",
     "brain-calc": "dist/bin/brain-calc-cli.js",
     "brain-gcd": "dist/bin/brain-gcd-cli.js",
-    "brain-balance": "dist/bin/brain-balance-cli.js"
+    "brain-balance": "dist/bin/brain-balance-cli.js",
+    "brain-progression": "dist/bin/brain-progression-cli.js"
   },
   "files": [
     "dist"
