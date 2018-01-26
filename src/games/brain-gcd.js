@@ -10,11 +10,8 @@ const gcd = (a, b) => {
   return gcd(b, a % b);
 };
 
-const generateArgs = () =>
-  [helper.generateRandom(-100, 100), helper.generateRandom(-100, 100)];
-
 const generator = () => {
-  const [first, second] = generateArgs();
+  const [first, second] = [helper.generateRandom(-100, 100), helper.generateRandom(-100, 100)];
   return { question: `${first} ${second}`, result: `${gcd(first, second)}` };
 };
 
