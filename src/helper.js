@@ -16,8 +16,6 @@ export const failureMessage = (name, answer, correct) =>
 
 export const congratulationsMessage = name => `Congratulations, ${name}!\n`;
 
-export const isEven = num => num % 2 === 0;
-
 export const generateRandom = (min, max) => {
   if (min === max) return min;
   return Math.round((min - 0.5) + (Math.random() * ((max - min) + 1)));
