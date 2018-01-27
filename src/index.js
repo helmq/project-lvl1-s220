@@ -1,20 +1,19 @@
 import * as helper from './helper';
 
-const gameIter =
-  (generator, askQuestion, getAnswer, onTrueAnswer, numberOfQuestions = 3) => {
-    let count = 0;
-    while (count < numberOfQuestions) {
-      const { question, result } = generator();
-      askQuestion(question);
-      const answer = getAnswer();
-      if (answer !== result) {
-        return { result, answer };
-      }
-      onTrueAnswer();
-      count += 1;
-    }
+const gameIter = (generator, output, numberOfQuestions = 3) => {
+  if (numberOfQuestions === 0) {
     return true;
-  };
+  }
+  const { askQuestion, readAnswer, onTrueAnswer } = output;
+  const { question, result } = generator();
+  askQuestion(question);
+  const answer = readAnswer();
+  if (answer !== result) {
+    return { result, answer };
+  }
+  onTrueAnswer();
+  return gameIter(generator, output, numberOfQuestions - 1);
+};
 
 export default (game) => {
   const { description, generator } = game;
@@ -26,7 +25,7 @@ export default (game) => {
   }
   const name = helper.upFirstLetter(helper.readName());
   console.log(helper.greetMessage(name));
-  const result = gameIter(generator, askQuestion, helper.readAnswer, onTrueAnswer);
+  const result = gameIter(generator, { askQuestion, readAnswer: helper.readAnswer, onTrueAnswer });
   if (result === true) {
     console.log(helper.congratulationsMessage(name));
   } else {
