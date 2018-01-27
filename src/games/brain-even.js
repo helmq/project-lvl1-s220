@@ -7,6 +7,7 @@ const isEven = num => num % 2 === 0;
 
 const generator = () => {
   const arg = helper.generateRandom(1, 100);
-  return { question: `${arg}`, result: isEven(arg) ? 'yes' : 'no' };
+  const result = isEven(arg) ? 'yes' : 'no';
+  return { question: `${arg}`, result };
 };
 export default () => startEngine({ description, generator });

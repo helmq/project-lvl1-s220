@@ -19,7 +19,8 @@ const isPrime = (num) => {
 
 const generator = () => {
   const arg = helper.generateRandom(1, 100);
-  return { question: `${arg}`, result: isPrime(arg) ? 'yes' : 'no' };
+  const result = isPrime(arg) ? 'yes' : 'no';
+  return { question: `${arg}`, result };
 };
 
 export default () => startEngine({ description, generator });
