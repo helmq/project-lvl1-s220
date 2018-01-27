@@ -23,4 +23,4 @@ const generator = () => {
   return { question: `${arg}`, result };
 };
 
-export default () => startEngine({ description, generator });
+export default () => startEngine(generator, description);

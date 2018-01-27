@@ -1,35 +1,31 @@
+import readlineSync from 'readline-sync';
 import * as helper from './helper';
 
-const gameIter = (generator, output, numberOfQuestions = 3) => {
-  if (numberOfQuestions === 0) {
-    return true;
-  }
-  const { askQuestion, readAnswer, onTrueAnswer } = output;
-  const { question, result } = generator();
-  askQuestion(question);
-  const answer = readAnswer();
-  if (answer !== result) {
-    return { result, answer };
-  }
-  onTrueAnswer();
-  return gameIter(generator, output, numberOfQuestions - 1);
-};
-
-export default (game) => {
-  const { description, generator } = game;
-  const askQuestion = q => console.log(helper.questionMessage(q));
-  const onTrueAnswer = () => console.log('Correct!');
-  console.log(helper.welcomeMessage());
+export default (game, description, numberOfQuestions = 3) => {
+  console.log('Welcome to the Brain Games!');
   if (description) {
     console.log(`${description}\n`);
   }
-  const name = helper.upFirstLetter(helper.readName());
-  console.log(helper.greetMessage(name));
-  const result = gameIter(generator, { askQuestion, readAnswer: helper.readAnswer, onTrueAnswer });
+  const name = readlineSync.question('May I have your name? ');
+  console.log(`Hello, ${helper.upFirstLetter(name)}!`);
+  const iter = (count) => {
+    if (count === 0) {
+      return true;
+    }
+    const { question, result } = game();
+    console.log(`Question: ${question}`);
+    const answer = readlineSync.question('Your answer: ');
+    if (answer !== result) {
+      console.log(`'${answer}' is wrong answer ;(. Correct answer was '${result}'.`);
+      return false;
+    }
+    console.log('Correct!');
+    return iter(count - 1);
+  };
+  const result = iter(numberOfQuestions);
   if (result === true) {
-    console.log(helper.congratulationsMessage(name));
+    console.log(`Congratulations, ${helper.upFirstLetter(name)}!`);
   } else {
-    console.log(helper.failureMessage(name, result.answer, result.result));
+    console.log(`Let's try again, ${helper.upFirstLetter(name)}!`);
   }
 };
-

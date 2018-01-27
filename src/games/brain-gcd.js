@@ -15,4 +15,4 @@ const generator = () => {
   return { question: `${first} ${second}`, result: `${gcd(first, second)}` };
 };
 
-export default () => startEngine({ description, generator });
+export default () => startEngine(description, generator);

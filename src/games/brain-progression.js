@@ -25,4 +25,4 @@ const generator = () => {
   return { question: progression.join(' '), result: `${skipped}` };
 };
 
-export default () => startEngine({ description, generator });
+export default () => startEngine(generator, description);

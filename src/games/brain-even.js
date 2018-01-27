@@ -10,4 +10,4 @@ const generator = () => {
   const result = isEven(arg) ? 'yes' : 'no';
   return { question: `${arg}`, result };
 };
-export default () => startEngine({ description, generator });
+export default () => startEngine(generator, description);

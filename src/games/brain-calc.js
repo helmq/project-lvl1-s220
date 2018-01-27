@@ -28,4 +28,4 @@ const generator = () => {
   return { question: `${first} ${signs[operation]} ${second}`, result: `${expression(first, second)}` };
 };
 
-export default () => startEngine({ description, generator });
+export default () => startEngine(generator, description);

@@ -36,4 +36,4 @@ const generator = () => {
   return { question: `${arg}`, result: `${balance(arg)}` };
 };
 
-export default () => startEngine({ description, generator });
+export default () => startEngine(generator, description);
