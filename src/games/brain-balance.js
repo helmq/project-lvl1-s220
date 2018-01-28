@@ -5,7 +5,7 @@ const description = 'Balance the given number.';
 
 const toArr = arg => Array.from(`${arg}`);
 
-const sortDigits = str => toArr(str).slice().sort().join('');
+const sortDigits = str => toArr(str).sort().join('');
 
 const isBalanced = (num) => {
   const sorted = sortDigits(num);

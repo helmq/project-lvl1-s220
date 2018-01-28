@@ -2,12 +2,6 @@ import readlineSync from 'readline-sync';
 import * as helper from './helper';
 
 export default (game, description, numberOfQuestions = 3) => {
-  console.log('Welcome to the Brain Games!');
-  if (description) {
-    console.log(`${description}\n`);
-  }
-  const name = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${helper.upFirstLetter(name)}!`);
   const iter = (count) => {
     if (count === 0) {
       return true;
@@ -22,6 +16,12 @@ export default (game, description, numberOfQuestions = 3) => {
     console.log('Correct!');
     return iter(count - 1);
   };
+  console.log('Welcome to the Brain Games!');
+  if (description) {
+    console.log(`${description}\n`);
+  }
+  const name = readlineSync.question('May I have your name? ');
+  console.log(`Hello, ${helper.upFirstLetter(name)}!`);
   const result = iter(numberOfQuestions);
   if (result === true) {
     console.log(`Congratulations, ${helper.upFirstLetter(name)}!`);
